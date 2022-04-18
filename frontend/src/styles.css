@@ -1,0 +1,130 @@
+:root {
+  font-family: "Rubik";
+}
+
+.heading {
+  display: flex;
+  justify-content: space-around;
+}
+
+.centeredVertical {
+  display: flex;
+  justify-content: space-around;
+}
+
+.grayheader {
+  background-color: rgb(224, 224, 224);
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  border-bottom: 1px solid #e6e6e6;
+  gap: 2rem;
+}
+.grayheader .headerColumn {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto 0 auto;
+}
+
+.grayheader .mainName {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.grayheader .title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  /* flex-grow: ; */
+}
+
+.grayheader .buttonsLine {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.logo {
+  height: 10rem;
+  /* margin-left: 2rem; */
+  transform: scale(-1, 1);
+  cursor: pointer;
+}
+
+.dashboard {
+}
+
+.dashboard .dashboardMotto {
+  display: flex;
+  justify-content: space-around;
+}
+
+.loginButton {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000 transparent #555 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.memoContainer {
+border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.memo {
+  width: 95%;
+}
+
+.memoText {
+  border: 1px solid #dddddd;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.memoHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.markdownView {
+  display: flex;
+  /* max-width: 600px; */
+}
