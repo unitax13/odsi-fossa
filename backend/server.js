@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req,res) => res.status(200).json({message: 'Hello, / (main page)'}));
+// app.get('/', (req,res) => res.status(200).json({message: 'Hello, / (main page)'}));
 
 app.use('/api/memos', require('./routes/memoRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
