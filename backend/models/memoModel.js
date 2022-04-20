@@ -34,7 +34,7 @@ const memoSchema = mongoose.Schema(
 
 memoSchema.pre('validate', function (next) {
   if (this.markdown) {
-    console.log("prevalidate")
+    // console.log("prevalidate")
     this.sanitizedHtml = dompurify.sanitize(marked(this.markdown))
   }
 
@@ -42,33 +42,17 @@ memoSchema.pre('validate', function (next) {
 })
 
 
-
-// memoSchema.post('findOneAndUpdate', async function (next) {
-//   console.log("postfindOneAndUpdate")
-
-//   const docToUpdate = await this.model.findOne(this.getQuery());
-//   console.log(docToUpdate); // The document that `findOneAndUpdate()` will modify
-
-//   // if (docToUpdate.markdown) {
-//   //   console.log("postvalidate")
-//   //   docToUpdate.sanitizedHtml = dompurify.sanitize(marked(docToUpdate.markdown))
-//   // }
-//   // console.log(docToUpdate)
-//   docToUpdate.save()
-//   // next()
-// })
-
 memoSchema.post('findOneAndUpdate', async function (next) {
-  console.log("postfindOneAndUpdate")
+  // console.log("postfindOneAndUpdate")
 
   const docToUpdate = await this.model.findOne(this.getQuery());
-  console.log(docToUpdate); // The document that `findOneAndUpdate()` will modify
+  // console.log(docToUpdate); // The document that `findOneAndUpdate()` will modify
 
   if (docToUpdate.markdown) {
-    console.log("postfindoneaunupdate markdwon")
+    // console.log("postfindoneaunupdate markdwon")
     docToUpdate.sanitizedHtml = dompurify.sanitize(marked(docToUpdate.markdown))
   }
-  console.log(docToUpdate)
+  // console.log(docToUpdate)
   docToUpdate.save()
   // next()
 })

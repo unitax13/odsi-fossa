@@ -72,7 +72,6 @@ export const memoSlice = createSlice({
       .addCase(updateMemo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        console.log("Payload id: " + action.payload._id)
         state.memos = state.memos.map( (memo) => {
           if (memo._id === action.payload._id) {
             memo.markdown = action.payload.markdown;
@@ -84,7 +83,6 @@ export const memoSlice = createSlice({
       .addCase(updateMemo.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        console.log("Message " + action.payload)
         state.message = action.payload;
       });
   },
@@ -116,7 +114,7 @@ export const getMemos = createAsyncThunk(
   "memos/getAll",
   async (_, thunkAPI) => {
     try {
-      console.log("get memos in slice")
+      // console.log("get memos in slice")
       const token = thunkAPI.getState().auth.user.token;
       return await memoService.getMemos(token);
     } catch (error) {
@@ -156,7 +154,7 @@ export const updateMemo = createAsyncThunk(
   "memos/update",
   async (a, thunkAPI) => {
     try {
-      console.log("update memo in slice with a of " + a.markdown + " " + a.id)
+      // console.log("update memo in slice with a of " + a.markdown + " " + a.id)
       const token = thunkAPI.getState().auth.user.token;
       return await memoService.updateMemo(a, token);
     } catch (error) {

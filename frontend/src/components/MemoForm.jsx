@@ -11,7 +11,7 @@ function MemoForm() {
 
   const onMemoSubmission = (e) => {
     e.preventDefault();
-    console.log("Submitted");
+    // console.log("Submitted");
 
     dispatch(createMemo({ markdown: markdownText }));
     dispatch(getMemos);

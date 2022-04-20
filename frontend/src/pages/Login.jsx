@@ -51,7 +51,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("Button submitted");
+    // console.log("Button submitted");
 
     const userData = {
       email,
@@ -72,7 +72,7 @@ const Login = () => {
 
   const onKeyPressed = (e) => {
     if (e.key === "Enter") {
-      console.log("Enter was pressed");
+      // console.log("Enter was pressed");
       onSubmitButtonClick();
     }
   };

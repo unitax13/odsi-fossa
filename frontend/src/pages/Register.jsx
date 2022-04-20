@@ -38,7 +38,7 @@ const Register = () => {
     }
     if (isSuccess || user) {
       navigate("/dashboard");
-      console.log("navigated because user already logged in");
+      // console.log("navigated because user already logged in");
     }
 
     dispatch(reset());
@@ -62,7 +62,7 @@ const Register = () => {
   };
 
   const onSubmitButtonClick = (e) => {
-    console.log("Button clicked");
+    // console.log("Button clicked");
 
     if (password !== password2) {
       toast.error("Passwords do not match");
@@ -84,7 +84,7 @@ const Register = () => {
 
   const onKeyPressed = (e) => {
     if (e.key === "Enter") {
-      console.log("Enter was pressed");
+      // console.log("Enter was pressed");
       onSubmitButtonClick();
     }
   };

@@ -82,7 +82,7 @@ function MemoItem({ memo }) {
         )}
 
         {isEditing === true ? (
-          <MemoFormEdit id={memo._id} text={memo.markdown} onEditButtonClicked={onEditButtonClicked}/>
+          <MemoFormEdit id={memo._id} markdown={memo.markdown} onEditButtonClicked={onEditButtonClicked}/>
         ) : (
           <div className="memoText">
             {memo.markdown.length < 40

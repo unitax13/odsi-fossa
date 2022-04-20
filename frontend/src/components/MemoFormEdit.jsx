@@ -11,19 +11,19 @@ function MemoFormEdit({id, markdown, onEditButtonClicked}) {
 
   const onMemoSubmission = (e) => {
     e.preventDefault();
-    console.log("Submitted");
+    // console.log("Submitted");
 
     
     setMarkdownText("");
   };
 
   useEffect(() => {
-    console.log(markdown)
+    // console.log(markdown)
   },[markdownText])
 
   const onSaveButtonClicked = () => {
     dispatch(updateMemo({id: id, markdown: markdownText }));
-    console.log("dispatched with id of " + id + " and markdown t4ext of " + markdownText)
+    // console.log("dispatched with id of " + id + " and markdown t4ext of " + markdownText)
     onEditButtonClicked();
   }
 

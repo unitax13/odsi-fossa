@@ -111,10 +111,10 @@ const loginUser = asyncHandler(async (req, res) => {
   if (user) {
     if (!difference || difference > 3000) {
       try {
-        console.log("user found");
+        // console.log("user found");
         isTooManyFailedLogins = false;
         if (await bcrypt.compare(password, user.password)) {
-          console.log("password was correct");
+          // console.log("password was correct");
           user.failedLogins = 0;
           user.lastPendingLogin = Date.now();
           await user.save();
@@ -126,8 +126,8 @@ const loginUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id),
           });
         } else {
-          console.log("password was incorrect");
-          console.log(" difference = " + difference);
+          // console.log("password was incorrect");
+          // console.log(" difference = " + difference);
           user.failedLogins = user.failedLogins + 1;
           user.lastPendingLogin = Date.now();
           await user.save();
