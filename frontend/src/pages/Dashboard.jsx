@@ -30,9 +30,10 @@ const Dashboard = () => {
 
     //do something when component unmounts
     return () => {
-      dispatch(reset());
+      // dsispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  } , [user,navigate, isError,dispatch]);
+  // }, [user, navigate, isError, message, dispatch]);
 
   if (isLoading) {
     return <Spinner />;

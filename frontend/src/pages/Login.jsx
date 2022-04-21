@@ -49,25 +49,48 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    // console.log("Button submitted");
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   // console.log("Button submitted");
 
-    const userData = {
-      email,
-      password,
-    };
+  //     const userData = {
+  //       email,
+  //       password,
+  //     };
 
-    dispatch(login(userData));
-  };
+  //     dispatch(login(userData));
+  //   }
+  // };
 
   const onSubmitButtonClick = (e) => {
-
-    const userData = {
-      email,
-      password,
-    };
-    dispatch(login(userData));
+    //check pass length
+    if (password.length < 4) {
+      toast.error("Password should have at least 4 characters");
+    } else if (password.length > 32) {
+      toast.error("Password should have up to 32 characters");
+    } else if (email.length > 48) {
+      toast.error("Email should have up to 48 characters");
+    } else {
+      let thereWasError = false;
+      const re =
+        /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      try {
+        if (!re.test(email)) {
+          toast.error("Please enter valid e-mail address");
+          thereWasError = true;
+        }
+      } catch (e) {
+        toast.error("Please enter valid e-mail address");
+        thereWasError = true;
+      }
+      if (!thereWasError) {
+          const userData = {
+            email,
+            password,
+          };
+          dispatch(login(userData));
+      }
+    }
   };
 
   const onKeyPressed = (e) => {
@@ -122,7 +145,6 @@ const Login = () => {
                 type="submit"
                 color="primary"
                 variant="contained"
-                onSubmit={onSubmit}
                 onClick={onSubmitButtonClick}
                 fullWidth
               >

@@ -3,17 +3,15 @@ function EntropyCounter({ password }) {
 
   // Shannon entropy
   const entropy = (str) => {
-    return (
-      str.length *
-      [...new Set(str)]
-        .map((chr) => {
-          return str.match(new RegExp(chr, "g")).length;
-        })
-        .reduce((sum, frequency) => {
-          let p = frequency / str.length;
-          return sum + p * Math.log2(1 / p);
-        }, 0)
-    );
+    const len = str.length
+ 
+    // Build a frequency map from the string.
+    const frequencies = Array.from(str)
+      .reduce((freq, c) => (freq[c] = (freq[c] || 0) + 1) && freq, {})
+   
+    // Sum the frequency of each character.
+    return Object.values(frequencies)
+      .reduce((sum, f) => sum - f/len * Math.log2(f/len), 0)
   };
 
   return (

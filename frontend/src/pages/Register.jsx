@@ -64,16 +64,39 @@ const Register = () => {
   const onSubmitButtonClick = (e) => {
     // console.log("Button clicked");
 
-    if (password !== password2) {
-      toast.error("Passwords do not match");
+    //check pass length
+    if (password.length < 4) {
+      toast.error("Password should have at least 4 characters");
+    } else if (password.length > 32) {
+      toast.error("Password should have up to 32 characters");
+    } else if (email.length > 48) {
+      toast.error("Email should have up to 48 characters");
     } else {
-      const userData = {
-        name,
-        email,
-        password,
-      };
+      let thereWasError = false;
+      const re =
+        /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      try {
+        if (!re.test(email)) {
+          toast.error("Please enter valid e-mail address");
+          thereWasError = true;
+        }
+      } catch (e) {
+        toast.error("Please enter valid e-mail address");
+        thereWasError = true;
+      }
+      if (!thereWasError) {
+        if (password !== password2) {
+          toast.error("Passwords do not match");
+        } else {
+          const userData = {
+            name,
+            email,
+            password,
+          };
 
-      dispatch(register(userData));
+          dispatch(register(userData));
+        }
+      }
     }
   };
 
@@ -99,9 +122,6 @@ const Register = () => {
   if (isLoading) {
     return <Spinner />;
   }
-
-
-
 
   return (
     <>

@@ -38,7 +38,12 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const re =
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  if (!re.test(email)) {
+  try {
+    if (!re.test(email)) {
+      res.status(400);
+      throw new Error("Please enter valid e-mail address");
+    }
+  } catch (e) {
     res.status(400);
     throw new Error("Please enter valid e-mail address");
   }
@@ -82,11 +87,13 @@ const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   if (password.length > 32) {
+    res.status(400);
     throw new Error("Invalid credentials");
     // throw new Error("Password should have up to 32 characters")
   }
 
   if (email.length > 48) {
+    res.status(400);
     throw new Error("Invalid credentials");
     // throw new Error("Email should have up to 48 characters")
   }
@@ -94,18 +101,33 @@ const loginUser = asyncHandler(async (req, res) => {
   const re =
     /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   if (!re.test(email)) {
+    res.status(400);
     throw new Error("Invalid credentials");
     // throw new Error("Please enter valid e-mail address")
   }
 
   //CHeck for user email
   const user = await User.findOne({ email });
+
+  if (!user || user == null) {
+    res.status(400);
+    throw new Error("Invalid credentials");
+  }
   const difference = Date.now() - user.lastPendingLogin;
 
   // if (user) {
-  //   //   console.log( Date.now().toLocaleString()  + " --- User " + user.name + ", last pending login at " + user.lastPendingLogin.toLocaleString() + " requesting a login " + difference + " from last login");
-  //   //   user.lastPendingLogin = Date.now();
-  //   //   // await user.save()
+  //   console.log(
+  //     Date.now().toLocaleString() +
+  //       " --- User " +
+  //       user.name +
+  //       ", last pending login at " +
+  //       user.lastPendingLogin.toLocaleString() +
+  //       " requesting a login " +
+  //       difference +
+  //       " from last login"
+  //   );
+  //   //   //   user.lastPendingLogin = Date.now();
+  //   //   //   // await user.save()
   // }
 
   if (user) {
