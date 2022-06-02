@@ -1,4 +1,5 @@
 import "../styles.css";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteMemo } from "../features/memo/memoSlice";
 import { Button, ButtonGroup, Paper, Grid } from "@material-ui/core";

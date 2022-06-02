@@ -1,3 +1,5 @@
+import React from "react";
+
 function EntropyCounter({ password }) {
   // console.count("updated")
 

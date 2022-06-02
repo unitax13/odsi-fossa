@@ -1,4 +1,5 @@
 import "../styles.css";
+import React from "react";
 import fossa from "../images/fossa4.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
