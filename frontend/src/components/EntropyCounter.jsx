@@ -19,7 +19,7 @@ function EntropyCounter({ password }) {
       {password.length > 3 ? (
         <div>
           Entropy of your password = {entropy(password).toFixed(2)} (
-          {entropy(password) < 25 ? "Too weak!" : "Reasonable"}){" "}
+          {entropy(password) < 3 ? "Too weak!" : "Reasonable"}){" "}
         </div>
       ) : (
         ""
